@@ -103,7 +103,10 @@ flex-direction:column;
 align-items:center;
 justify-content:center;
 box-shadow:0 0 34px #8b65ff25;
-z-index:2
+z-index:2;
+color:var(--text);
+font-family:inherit;
+cursor:pointer
 }
 
 .hub .symbol{font-size:29px}
@@ -127,7 +130,8 @@ justify-content:center;
 gap:5px;
 cursor:pointer;
 transition:.16s;
-box-shadow:0 7px 20px #0003
+box-shadow:0 7px 20px #0003;
+font-family:inherit
 }
 
 .room:active{
@@ -312,7 +316,8 @@ border:1px solid var(--line);
 padding:10px 15px;
 border-radius:30px;
 font-size:12px;
-display:none
+display:none;
+z-index:10
 }
 
 @media(max-width:520px){
@@ -369,7 +374,6 @@ E-COMMERCE HQ
 <div class="diagram" aria-label="مركز GPT وثماني غرف">
 
 <svg class="wires" viewBox="0 0 100 100" preserveAspectRatio="none">
-
 <line x1="50" y1="50" x2="18" y2="22"/>
 <line x1="50" y1="50" x2="50" y2="21"/>
 <line x1="50" y1="50" x2="82" y2="22"/>
@@ -378,7 +382,6 @@ E-COMMERCE HQ
 <line x1="50" y1="50" x2="21" y2="80"/>
 <line x1="50" y1="50" x2="50" y2="81"/>
 <line x1="50" y1="50" x2="79" y2="80"/>
-
 </svg>
 
 <button class="hub" type="button" data-room="manager">
@@ -454,9 +457,7 @@ E-COMMERCE HQ
 
 <div class="roomhead">
 
-<button class="back" id="back">
-← الرئيسية
-</button>
+<button class="back" id="back">← الرئيسية</button>
 
 <div>
 <div class="roomtitle" id="roomTitle">الغرفة</div>
@@ -466,13 +467,11 @@ E-COMMERCE HQ
 </div>
 
 <div class="messages" id="messages">
-
 <div class="empty">
 هذه مساحة المحادثة الخاصة بهذه الغرفة.
 <br>
 ستبقى رسائلك محفوظة على هذا الجهاز.
 </div>
-
 </div>
 
 <div class="composer">
@@ -487,12 +486,10 @@ rows="1"></textarea>
 
 <div class="tools">
 
-<button id="clear">
-مسح سجل هذه الغرفة
-</button>
+<button id="clear">مسح سجل هذه الغرفة</button>
 
 <span class="note">
-نسخة واجهة أولية: لا يوجد اتصال فعلي بـ GPT بعد.
+نسخة أولية: لا يوجد اتصال فعلي بـ GPT بعد.
 </span>
 
 </div>
@@ -505,47 +502,25 @@ rows="1"></textarea>
 
 <script>
 
-const rooms={manager:['المدير المركزي GPT','المركز الرئيسي لإدارة وتنسيق غرف المشروع'],
+const rooms={
 
-search:[
-'غرفة البحث',
-'البحث عن المنتجات والأسواق والمنافسين'
-],
+manager:['المدير المركزي GPT','المركز الرئيسي لإدارة وتنسيق غرف المشروع'],
 
-marketing:[
-'غرفة التسويق',
-'الجمهور والاستراتيجية والإعلانات'
-],
+search:['غرفة البحث','البحث عن المنتجات والأسواق والمنافسين'],
 
-analysis:[
-'غرفة التحليل',
-'تحليل البيانات ومؤشرات الأداء'
-],
+marketing:['غرفة التسويق','الجمهور والاستراتيجية والإعلانات'],
 
-video:[
-'غرفة الفيديو',
-'الفيديوهات والمحتوى الإبداعي'
-],
+analysis:['غرفة التحليل','تحليل البيانات ومؤشرات الأداء'],
 
-suppliers:[
-'غرفة الموردين',
-'الموردون وCJ والأسعار والشحن'
-],
+video:['غرفة الفيديو','الفيديوهات والمحتوى الإبداعي'],
 
-budget:[
-'غرفة الميزانية',
-'التكاليف والأرباح وإدارة المخاطر'
-],
+suppliers:['غرفة الموردين','الموردون وCJ والأسعار والشحن'],
 
-store:[
-'غرفة المتجر',
-'Shopify والصفحات والعمليات'
-],
+budget:['غرفة الميزانية','التكاليف والأرباح وإدارة المخاطر'],
 
-support:[
-'غرفة الردود',
-'خدمة العملاء والرسائل والاسترجاع'
-]
+store:['غرفة المتجر','Shopify والصفحات والعمليات'],
+
+support:['غرفة الردود','خدمة العملاء والرسائل والاسترجاع']
 
 };
 
@@ -554,7 +529,7 @@ let current=null;
 const $=id=>document.getElementById(id);
 
 function key(){
-return 'ehq-chat-'+current
+return 'ehq-chat-'+current;
 }
 
 function showToast(t){
@@ -563,16 +538,45 @@ $('toast').textContent=t;
 $('toast').style.display='block';
 
 setTimeout(()=>{
-$('toast').style.display='none'
-},2200);
+$('toast').style.display='none';
+},2500);
+
+}
+
+function getMessages(room){
+
+return JSON.parse(
+localStorage.getItem('ehq-chat-'+room)||'[]'
+);
+
+}
+
+function saveMessages(room,data){
+
+localStorage.setItem(
+'ehq-chat-'+room,
+JSON.stringify(data)
+);
+
+}
+
+function addMessage(room,role,text){
+
+const data=getMessages(room);
+
+data.push({
+role:role,
+text:text,
+at:Date.now()
+});
+
+saveMessages(room,data);
 
 }
 
 function render(){
 
-const data=JSON.parse(
-localStorage.getItem(key())||'[]'
-);
+const data=getMessages(current);
 
 $('messages').innerHTML='';
 
@@ -596,12 +600,47 @@ $('messages').appendChild(el);
 
 }
 
-$('messages').scrollTop=
-$('messages').scrollHeight;
+$('messages').scrollTop=$('messages').scrollHeight;
+
+}
+
+/* تحديد الغرفة المناسبة للمهمة */
+
+function routeTask(text){
+
+const t=text.toLowerCase();
+
+if(/منتج|منتجات|سوق|منافس|بحث/.test(t))
+return 'search';
+
+if(/إعلان|تسويق|جمهور|حملة/.test(t))
+return 'marketing';
+
+if(/تحليل|بيانات|أرقام|أداء/.test(t))
+return 'analysis';
+
+if(/فيديو|تصميم|محتوى/.test(t))
+return 'video';
+
+if(/مورد|cj|شحن|سعر/.test(t))
+return 'suppliers';
+
+if(/ميزانية|تكلفة|ربح/.test(t))
+return 'budget';
+
+if(/متجر|shopify|صفحة/.test(t))
+return 'store';
+
+if(/عميل|رد|استرجاع|دعم/.test(t))
+return 'support';
+
+return 'manager';
 
 }
 
 function openRoom(id){
+
+if(!rooms[id])return;
 
 current=id;
 
@@ -630,12 +669,14 @@ $('home').classList.remove('hidden');
 document.querySelectorAll('[data-room]').forEach(b=>{
 
 b.addEventListener('click',()=>{
-openRoom(b.dataset.room)
+openRoom(b.dataset.room);
 });
 
 });
 
 $('back').onclick=home;
+
+/* إرسال الرسائل وتوجيه مهام المدير المركزي */
 
 $('send').onclick=()=>{
 
@@ -643,22 +684,59 @@ const text=$('input').value.trim();
 
 if(!text)return;
 
-const data=JSON.parse(
-localStorage.getItem(key())||'[]'
-);
+if(!current)return;
 
-data.push({
-role:'user',
-text,
-at:Date.now()
-});
+/* حفظ الرسالة في الغرفة الحالية */
 
-localStorage.setItem(
-key(),
-JSON.stringify(data)
-);
+addMessage(current,'user',text);
 
 $('input').value='';
+
+/* إذا كانت الرسالة من المدير المركزي */
+
+if(current==='manager'){
+
+const target=routeTask(text);
+
+/* إذا لم يتم التعرف على الغرفة المناسبة */
+
+if(target==='manager'){
+
+addMessage(
+'manager',
+'assistant',
+'لم أتمكن من تحديد الغرفة المناسبة لهذه المهمة. حاول كتابة كلمات أوضح مثل: منتج، تسويق، تحليل، فيديو، مورد، ميزانية، متجر أو عميل.'
+);
+
+render();
+
+return;
+
+}
+
+/* إرسال نسخة من المهمة إلى الغرفة المناسبة */
+
+addMessage(target,'user',text);
+
+/* تسجيل عملية التوجيه في سجل المدير */
+
+addMessage(
+'manager',
+'assistant',
+'تم توجيه المهمة إلى '+rooms[target][0]+'. يمكنك متابعة المهمة داخل الغرفة المختصة.'
+);
+
+/* فتح الغرفة المستهدفة */
+
+showToast('تم توجيه المهمة إلى '+rooms[target][0]);
+
+openRoom(target);
+
+return;
+
+}
+
+/* في الغرف الأخرى يتم حفظ الرسالة فقط */
 
 render();
 
@@ -680,6 +758,8 @@ $('send').click();
 
 $('clear').onclick=()=>{
 
+if(!current)return;
+
 if(confirm('هل تريد مسح سجل هذه الغرفة من هذا الجهاز؟')){
 
 localStorage.removeItem(key());
@@ -691,6 +771,8 @@ showToast('تم مسح سجل الغرفة');
 }
 
 };
+
+/* تسجيل التطبيق كـ PWA */
 
 if('serviceWorker'in navigator){
 
@@ -707,4 +789,4 @@ navigator.serviceWorker
 </script>
 
 </body>
-  </html>
+</html>
