@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 512 512">
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#38215f"/>
+      <stop offset="100%" stop-color="#100b1d"/>
+    </linearGradient>
+
+    <linearGradient id="purple" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#c4a5ff"/>
+      <stop offset="100%" stop-color="#8054e8"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="110" fill="url(#bg)"/>
+
+  <circle cx="256" cy="256" r="165"
+          fill="none" stroke="#8054e8"
+          stroke-width="5" opacity=".35"/>
+
+  <g stroke="url(#purple)" stroke-width="13"
+     stroke-linecap="round" fill="none">
+
+    <path d="M256 256 L120 120"/>
+    <path d="M256 256 L256 85"/>
+    <path d="M256 256 L392 120"/>
+    <path d="M256 256 L95 256"/>
+    <path d="M256 256 L417 256"/>
+    <path d="M256 256 L120 392"/>
+    <path d="M256 256 L256 427"/>
+    <path d="M256 256 L392 392"/>
+
+  </g>
+
+  <g fill="#c4a5ff">
+    <circle cx="120" cy="120" r="17"/>
+    <circle cx="256" cy="85" r="17"/>
+    <circle cx="392" cy="120" r="17"/>
+    <circle cx="95" cy="256" r="17"/>
+    <circle cx="417" cy="256" r="17"/>
+    <circle cx="120" cy="392" r="17"/>
+    <circle cx="256" cy="427" r="17"/>
+    <circle cx="392" cy="392" r="17"/>
+  </g>
+
+  <rect x="175" y="175" width="162" height="162"
+        rx="35" fill="#24153f"
+        stroke="#b18cff" stroke-width="7"/>
+
+  <text x="256" y="267"
+        font-family="Arial,sans-serif"
+        font-size="67" font-weight="bold"
+        text-anchor="middle"
+        fill="#ffffff">HQ</text>
+
+  <text x="256" y="303"
+        font-family="Arial,sans-serif"
+        font-size="20" letter-spacing="3"
+        text-anchor="middle"
+        fill="#c4a5ff">GPT</text>
+
+</svg>
