@@ -608,37 +608,37 @@ $('messages').scrollTop=$('messages').scrollHeight;
 function routeTask(text){
   const t = text.toLowerCase();
 
-  // التسويق
-  if(/إعلان|تسويق|جمهور|حملة|تسويقية/.test(t))
-    return 'marketing';
-
   // الفيديو
-  if(/فيديو|تصميم|محتوى/.test(t))
+  if(/فيديو|سيناريو|مونتاج|محتوى إبداعي/.test(t))
     return 'video';
 
-  // الموردون والشحن
-  if(/مورد|cj|شحن|سعر|أسعار|توفر/.test(t))
-    return 'suppliers';
-
-  // خدمة العملاء والردود
-  if(/عميل|رد|استرجاع|دعم/.test(t))
-    return 'support';
-
-  // التحليل
-  if(/تحليل|بيانات|أرقام|أداء/.test(t))
-    return 'analysis';
-
   // الميزانية
-  if(/ميزانية|تكلفة|ربح|أرباح/.test(t))
+  if(/ميزانية|تكلفة|ربح|أرباح|مصروفات/.test(t))
     return 'budget';
 
   // المتجر
-  if(/متجر|shopify|صفحة|صفحات/.test(t))
+  if(/متجر|shopify|صفحة|صفحات|إعدادات المتجر/.test(t))
     return 'store';
 
-  // البحث عن المنتجات والأسواق
+  // الموردون والشحن
+  if(/مورد|cj|شحن|سعر|أسعار|توفر|مخزون/.test(t))
+    return 'suppliers';
+
+  // خدمة العملاء
+  if(/عميل|رد|استرجاع|دعم|زبون/.test(t))
+    return 'support';
+
+  // التحليل
+  if(/تحليل|بيانات|أرقام|أداء|مبيعات/.test(t))
+    return 'analysis';
+
+  // البحث
   if(/منتج|منتجات|سوق|منافس|بحث/.test(t))
     return 'search';
+
+  // التسويق
+  if(/إعلان|تسويق|جمهور|حملة|تسويقية/.test(t))
+    return 'marketing';
 
   return 'manager';
 }
