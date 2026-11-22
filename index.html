@@ -605,37 +605,42 @@ $('messages').scrollTop=$('messages').scrollHeight;
 }
 
 /* تحديد الغرفة المناسبة للمهمة */
-
 function routeTask(text){
+  const t = text.toLowerCase();
 
-const t=text.toLowerCase();
+  // التسويق
+  if(/إعلان|تسويق|جمهور|حملة|تسويقية/.test(t))
+    return 'marketing';
 
-if(/منتج|منتجات|سوق|منافس|بحث/.test(t))
-return 'search';
+  // الفيديو
+  if(/فيديو|تصميم|محتوى/.test(t))
+    return 'video';
 
-if(/إعلان|تسويق|جمهور|حملة/.test(t))
-return 'marketing';
+  // الموردون والشحن
+  if(/مورد|cj|شحن|سعر|أسعار|توفر/.test(t))
+    return 'suppliers';
 
-if(/تحليل|بيانات|أرقام|أداء/.test(t))
-return 'analysis';
+  // خدمة العملاء والردود
+  if(/عميل|رد|استرجاع|دعم/.test(t))
+    return 'support';
 
-if(/فيديو|تصميم|محتوى/.test(t))
-return 'video';
+  // التحليل
+  if(/تحليل|بيانات|أرقام|أداء/.test(t))
+    return 'analysis';
 
-if(/مورد|cj|شحن|سعر/.test(t))
-return 'suppliers';
+  // الميزانية
+  if(/ميزانية|تكلفة|ربح|أرباح/.test(t))
+    return 'budget';
 
-if(/ميزانية|تكلفة|ربح/.test(t))
-return 'budget';
+  // المتجر
+  if(/متجر|shopify|صفحة|صفحات/.test(t))
+    return 'store';
 
-if(/متجر|shopify|صفحة/.test(t))
-return 'store';
+  // البحث عن المنتجات والأسواق
+  if(/منتج|منتجات|سوق|منافس|بحث/.test(t))
+    return 'search';
 
-if(/عميل|رد|استرجاع|دعم/.test(t))
-return 'support';
-
-return 'manager';
-
+  return 'manager';
 }
 
 function openRoom(id){
