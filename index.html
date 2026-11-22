@@ -1,0 +1,710 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#24134b">
+<meta name="description" content="E-commerce HQ">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg">
+<title>E-commerce HQ</title>
+
+<style>
+:root{
+--bg:#100b1d;
+--panel:#1c1430;
+--panel2:#261b3e;
+--line:#49376c;
+--purple:#9b7bff;
+--text:#f6f1ff;
+--muted:#b8aacd;
+--green:#6fdaa2
+}
+
+*{box-sizing:border-box}
+
+body{
+margin:0;
+background:radial-gradient(ellipse at 50% 0%,#2b1b4c 0%,var(--bg) 60%);
+color:var(--text);
+font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+min-height:100vh
+}
+
+.app{
+max-width:900px;
+margin:auto;
+padding:18px 16px 30px
+}
+
+.top{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:18px
+}
+
+.brand{
+font-weight:800;
+letter-spacing:.3px
+}
+
+.brand small{
+display:block;
+color:var(--muted);
+font-size:12px;
+font-weight:500;
+margin-top:3px
+}
+
+.pill{
+border:1px solid var(--line);
+border-radius:30px;
+padding:7px 11px;
+color:var(--muted);
+font-size:11px
+}
+
+.diagram{
+position:relative;
+max-width:720px;
+margin:8px auto 0;
+aspect-ratio:1.08/1;
+min-height:480px
+}
+
+.wires{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+pointer-events:none
+}
+
+.wires line{
+stroke:#6c5796;
+stroke-width:1.15;
+opacity:.8
+}
+
+.hub{
+position:absolute;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
+width:24%;
+min-width:112px;
+aspect-ratio:1.3/1;
+background:linear-gradient(145deg,#39245e,#211637);
+border:1px solid #9877ed;
+border-radius:17px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+box-shadow:0 0 34px #8b65ff25;
+z-index:2
+}
+
+.hub .symbol{font-size:29px}
+.hub b{font-size:20px;letter-spacing:1px}
+.hub small{font-size:11px;color:var(--muted)}
+
+.room{
+position:absolute;
+transform:translate(-50%,-50%);
+width:23%;
+min-width:105px;
+min-height:78px;
+background:linear-gradient(145deg,#261b40,#1a132a);
+border:1px solid #66518d;
+border-radius:13px;
+color:var(--text);
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:5px;
+cursor:pointer;
+transition:.16s;
+box-shadow:0 7px 20px #0003
+}
+
+.room:active{
+transform:translate(-50%,-50%) scale(.96)
+}
+
+.room:hover{
+border-color:var(--purple);
+background:#30214e
+}
+
+.room .ico{font-size:22px}
+.room b{font-size:14px}
+.room small{font-size:10px;color:var(--muted)}
+
+.r-search{left:18%;top:22%}
+.r-marketing{left:50%;top:21%}
+.r-analysis{left:82%;top:22%}
+.r-video{left:14%;top:50%}
+.r-suppliers{left:86%;top:50%}
+.r-budget{left:21%;top:80%}
+.r-store{left:50%;top:81%}
+.r-support{left:79%;top:80%}
+
+.foot{
+display:flex;
+justify-content:center;
+gap:8px;
+flex-wrap:wrap;
+margin:8px auto;
+color:var(--muted);
+font-size:11px
+}
+
+.status{
+display:flex;
+align-items:center;
+gap:6px
+}
+
+.dot{
+width:7px;
+height:7px;
+background:var(--green);
+border-radius:50%
+}
+
+.view{
+display:none;
+max-width:720px;
+margin:12px auto
+}
+
+.view.active{display:block}
+.home.hidden{display:none}
+
+.roomhead{
+display:flex;
+align-items:center;
+gap:12px;
+background:var(--panel);
+border:1px solid var(--line);
+border-radius:15px;
+padding:12px;
+margin-bottom:12px
+}
+
+.back{
+border:1px solid var(--line);
+background:var(--panel2);
+color:white;
+border-radius:10px;
+padding:9px 12px;
+cursor:pointer
+}
+
+.roomtitle{font-weight:800}
+.roomdesc{color:var(--muted);font-size:12px}
+
+.messages{
+background:#171025;
+border:1px solid #33264a;
+border-radius:15px;
+min-height:340px;
+height:min(55vh,560px);
+overflow:auto;
+padding:14px;
+display:flex;
+flex-direction:column;
+gap:10px
+}
+
+.empty{
+margin:auto;
+text-align:center;
+color:var(--muted);
+font-size:13px;
+max-width:260px;
+line-height:1.8
+}
+
+.bubble{
+max-width:88%;
+padding:10px 13px;
+border-radius:13px;
+white-space:pre-wrap;
+line-height:1.65;
+font-size:14px
+}
+
+.user{
+align-self:flex-start;
+background:#39265d;
+border:1px solid #634b91
+}
+
+.assistant{
+align-self:flex-end;
+background:#211a30;
+border:1px solid #49376c
+}
+
+.composer{
+display:flex;
+gap:8px;
+margin-top:10px
+}
+
+.composer textarea{
+flex:1;
+resize:vertical;
+min-height:48px;
+max-height:130px;
+background:#1b1429;
+border:1px solid var(--line);
+border-radius:12px;
+color:white;
+padding:12px;
+font:inherit
+}
+
+.send{
+background:#7955d6;
+color:white;
+border:0;
+border-radius:12px;
+padding:0 18px;
+font-weight:700;
+cursor:pointer
+}
+
+.note{
+color:#9d91ae;
+font-size:11px;
+text-align:center;
+margin:10px 0
+}
+
+.tools{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin:12px 2px
+}
+
+.tools button{
+background:transparent;
+color:var(--muted);
+border:0;
+cursor:pointer;
+font:inherit;
+font-size:12px
+}
+
+.toast{
+position:fixed;
+bottom:18px;
+left:50%;
+transform:translateX(-50%);
+background:#30214e;
+border:1px solid var(--line);
+padding:10px 15px;
+border-radius:30px;
+font-size:12px;
+display:none
+}
+
+@media(max-width:520px){
+
+.app{padding:14px 10px}
+
+.diagram{
+min-height:420px;
+aspect-ratio:.92/1
+}
+
+.room{
+min-width:86px;
+width:25%;
+min-height:70px
+}
+
+.room b{font-size:12px}
+.room small{font-size:9px}
+.hub{min-width:100px}
+
+.r-search{left:18%;top:20%}
+.r-marketing{top:17%}
+.r-analysis{left:82%;top:20%}
+.r-video{left:13%;top:50%}
+.r-suppliers{left:87%;top:50%}
+.r-budget{left:20%;top:81%}
+.r-store{top:84%}
+.r-support{left:80%;top:81%}
+
+.messages{
+height:58vh;
+min-height:280px
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<main class="app">
+
+<header class="top">
+<div class="brand">
+E-COMMERCE HQ
+<small>مركز قيادة مشروعك</small>
+</div>
+<span class="pill">نسخة أولية · دون API مدفوع</span>
+</header>
+
+<section class="home" id="home">
+
+<div class="diagram" aria-label="مركز GPT وثماني غرف">
+
+<svg class="wires" viewBox="0 0 100 100" preserveAspectRatio="none">
+
+<line x1="50" y1="50" x2="18" y2="22"/>
+<line x1="50" y1="50" x2="50" y2="21"/>
+<line x1="50" y1="50" x2="82" y2="22"/>
+<line x1="50" y1="50" x2="14" y2="50"/>
+<line x1="50" y1="50" x2="86" y2="50"/>
+<line x1="50" y1="50" x2="21" y2="80"/>
+<line x1="50" y1="50" x2="50" y2="81"/>
+<line x1="50" y1="50" x2="79" y2="80"/>
+
+</svg>
+
+<div class="hub">
+<span class="symbol">✺</span>
+<b>GPT</b>
+<small>المدير المركزي</small>
+</div>
+
+<button class="room r-search" data-room="search">
+<span class="ico">⌕</span>
+<b>البحث</b>
+<small>المنتجات والأسواق</small>
+</button>
+
+<button class="room r-marketing" data-room="marketing">
+<span class="ico">◉</span>
+<b>التسويق</b>
+<small>الجمهور والإعلانات</small>
+</button>
+
+<button class="room r-analysis" data-room="analysis">
+<span class="ico">▥</span>
+<b>التحليل</b>
+<small>البيانات والقرارات</small>
+</button>
+
+<button class="room r-video" data-room="video">
+<span class="ico">▷</span>
+<b>الفيديو</b>
+<small>المحتوى الإبداعي</small>
+</button>
+
+<button class="room r-suppliers" data-room="suppliers">
+<span class="ico">▣</span>
+<b>الموردون</b>
+<small>CJ والشحن</small>
+</button>
+
+<button class="room r-budget" data-room="budget">
+<span class="ico">＄</span>
+<b>الميزانية</b>
+<small>التكاليف والأرباح</small>
+</button>
+
+<button class="room r-store" data-room="store">
+<span class="ico">▤</span>
+<b>المتجر</b>
+<small>Shopify والعمليات</small>
+</button>
+
+<button class="room r-support" data-room="support">
+<span class="ico">✉</span>
+<b>الردود</b>
+<small>خدمة العملاء</small>
+</button>
+
+</div>
+
+<div class="foot">
+<span class="status">
+<i class="dot"></i>
+الواجهة المحلية جاهزة
+</span>
+<span>•</span>
+<span>٨ غرف مستقلة</span>
+<span>•</span>
+<span>الحفظ على هذا الجهاز</span>
+</div>
+
+</section>
+
+<section class="view" id="roomView">
+
+<div class="roomhead">
+
+<button class="back" id="back">
+← الرئيسية
+</button>
+
+<div>
+<div class="roomtitle" id="roomTitle">الغرفة</div>
+<div class="roomdesc" id="roomDesc"></div>
+</div>
+
+</div>
+
+<div class="messages" id="messages">
+
+<div class="empty">
+هذه مساحة المحادثة الخاصة بهذه الغرفة.
+<br>
+ستبقى رسائلك محفوظة على هذا الجهاز.
+</div>
+
+</div>
+
+<div class="composer">
+
+<textarea id="input"
+placeholder="اكتب ملاحظتك أو المهمة..."
+rows="1"></textarea>
+
+<button class="send" id="send">إرسال</button>
+
+</div>
+
+<div class="tools">
+
+<button id="clear">
+مسح سجل هذه الغرفة
+</button>
+
+<span class="note">
+نسخة واجهة أولية: لا يوجد اتصال فعلي بـ GPT بعد.
+</span>
+
+</div>
+
+</section>
+
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+
+const rooms={
+
+search:[
+'غرفة البحث',
+'البحث عن المنتجات والأسواق والمنافسين'
+],
+
+marketing:[
+'غرفة التسويق',
+'الجمهور والاستراتيجية والإعلانات'
+],
+
+analysis:[
+'غرفة التحليل',
+'تحليل البيانات ومؤشرات الأداء'
+],
+
+video:[
+'غرفة الفيديو',
+'الفيديوهات والمحتوى الإبداعي'
+],
+
+suppliers:[
+'غرفة الموردين',
+'الموردون وCJ والأسعار والشحن'
+],
+
+budget:[
+'غرفة الميزانية',
+'التكاليف والأرباح وإدارة المخاطر'
+],
+
+store:[
+'غرفة المتجر',
+'Shopify والصفحات والعمليات'
+],
+
+support:[
+'غرفة الردود',
+'خدمة العملاء والرسائل والاسترجاع'
+]
+
+};
+
+let current=null;
+
+const $=id=>document.getElementById(id);
+
+function key(){
+return 'ehq-chat-'+current
+}
+
+function showToast(t){
+
+$('toast').textContent=t;
+$('toast').style.display='block';
+
+setTimeout(()=>{
+$('toast').style.display='none'
+},2200);
+
+}
+
+function render(){
+
+const data=JSON.parse(
+localStorage.getItem(key())||'[]'
+);
+
+$('messages').innerHTML='';
+
+if(!data.length){
+
+$('messages').innerHTML=
+'<div class="empty">هذه مساحة المحادثة الخاصة بهذه الغرفة.<br>ستبقى رسائلك محفوظة على هذا الجهاز.</div>';
+
+return;
+
+}
+
+for(const m of data){
+
+const el=document.createElement('div');
+
+el.className='bubble '+m.role;
+el.textContent=m.text;
+
+$('messages').appendChild(el);
+
+}
+
+$('messages').scrollTop=
+$('messages').scrollHeight;
+
+}
+
+function openRoom(id){
+
+current=id;
+
+$('home').classList.add('hidden');
+
+$('roomView').classList.add('active');
+
+$('roomTitle').textContent=rooms[id][0];
+
+$('roomDesc').textContent=rooms[id][1];
+
+render();
+
+}
+
+function home(){
+
+current=null;
+
+$('roomView').classList.remove('active');
+
+$('home').classList.remove('hidden');
+
+}
+
+document.querySelectorAll('[data-room]').forEach(b=>{
+
+b.addEventListener('click',()=>{
+openRoom(b.dataset.room)
+});
+
+});
+
+$('back').onclick=home;
+
+$('send').onclick=()=>{
+
+const text=$('input').value.trim();
+
+if(!text)return;
+
+const data=JSON.parse(
+localStorage.getItem(key())||'[]'
+);
+
+data.push({
+role:'user',
+text,
+at:Date.now()
+});
+
+localStorage.setItem(
+key(),
+JSON.stringify(data)
+);
+
+$('input').value='';
+
+render();
+
+showToast('تم حفظ الرسالة في سجل هذه الغرفة');
+
+};
+
+$('input').addEventListener('keydown',e=>{
+
+if(e.key==='Enter'&&!e.shiftKey){
+
+e.preventDefault();
+
+$('send').click();
+
+}
+
+});
+
+$('clear').onclick=()=>{
+
+if(confirm('هل تريد مسح سجل هذه الغرفة من هذا الجهاز؟')){
+
+localStorage.removeItem(key());
+
+render();
+
+showToast('تم مسح سجل الغرفة');
+
+}
+
+};
+
+if('serviceWorker'in navigator){
+
+window.addEventListener('load',()=>{
+
+navigator.serviceWorker
+.register('./sw.js')
+.catch(()=>{});
+
+});
+
+}
+
+</script>
+
+</body>
+  </html>
