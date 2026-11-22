@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
+
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -10,6 +11,7 @@
 <title>E-commerce HQ</title>
 
 <style>
+
 :root{
 --bg:#100b1d;
 --panel:#1c1430;
@@ -21,7 +23,9 @@
 --green:#6fdaa2
 }
 
-*{box-sizing:border-box}
+*{
+box-sizing:border-box
+}
 
 body{
 margin:0;
@@ -109,9 +113,19 @@ font-family:inherit;
 cursor:pointer
 }
 
-.hub .symbol{font-size:29px}
-.hub b{font-size:20px;letter-spacing:1px}
-.hub small{font-size:11px;color:var(--muted)}
+.hub .symbol{
+font-size:29px
+}
+
+.hub b{
+font-size:20px;
+letter-spacing:1px
+}
+
+.hub small{
+font-size:11px;
+color:var(--muted)
+}
 
 .room{
 position:absolute;
@@ -143,9 +157,18 @@ border-color:var(--purple);
 background:#30214e
 }
 
-.room .ico{font-size:22px}
-.room b{font-size:14px}
-.room small{font-size:10px;color:var(--muted)}
+.room .ico{
+font-size:22px
+}
+
+.room b{
+font-size:14px
+}
+
+.room small{
+font-size:10px;
+color:var(--muted)
+}
 
 .r-search{left:18%;top:22%}
 .r-marketing{left:50%;top:21%}
@@ -185,8 +208,13 @@ max-width:720px;
 margin:12px auto
 }
 
-.view.active{display:block}
-.home.hidden{display:none}
+.view.active{
+display:block
+}
+
+.home.hidden{
+display:none
+}
 
 .roomhead{
 display:flex;
@@ -208,8 +236,14 @@ padding:9px 12px;
 cursor:pointer
 }
 
-.roomtitle{font-weight:800}
-.roomdesc{color:var(--muted);font-size:12px}
+.roomtitle{
+font-weight:800
+}
+
+.roomdesc{
+color:var(--muted);
+font-size:12px
+}
 
 .messages{
 background:#171025;
@@ -239,7 +273,8 @@ padding:10px 13px;
 border-radius:13px;
 white-space:pre-wrap;
 line-height:1.65;
-font-size:14px
+font-size:14px;
+overflow-wrap:anywhere
 }
 
 .user{
@@ -317,12 +352,16 @@ padding:10px 15px;
 border-radius:30px;
 font-size:12px;
 display:none;
-z-index:10
+z-index:10;
+max-width:90%;
+text-align:center
 }
 
 @media(max-width:520px){
 
-.app{padding:14px 10px}
+.app{
+padding:14px 10px
+}
 
 .diagram{
 min-height:420px;
@@ -335,9 +374,17 @@ width:25%;
 min-height:70px
 }
 
-.room b{font-size:12px}
-.room small{font-size:9px}
-.hub{min-width:100px}
+.room b{
+font-size:12px
+}
+
+.room small{
+font-size:9px
+}
+
+.hub{
+min-width:100px
+}
 
 .r-search{left:18%;top:20%}
 .r-marketing{top:17%}
@@ -354,6 +401,7 @@ min-height:280px
 }
 
 }
+
 </style>
 </head>
 
@@ -362,11 +410,14 @@ min-height:280px
 <main class="app">
 
 <header class="top">
+
 <div class="brand">
 E-COMMERCE HQ
 <small>مركز قيادة مشروعك</small>
 </div>
+
 <span class="pill">نسخة أولية · دون API مدفوع</span>
+
 </header>
 
 <section class="home" id="home">
@@ -374,6 +425,7 @@ E-COMMERCE HQ
 <div class="diagram" aria-label="مركز GPT وثماني غرف">
 
 <svg class="wires" viewBox="0 0 100 100" preserveAspectRatio="none">
+
 <line x1="50" y1="50" x2="18" y2="22"/>
 <line x1="50" y1="50" x2="50" y2="21"/>
 <line x1="50" y1="50" x2="82" y2="22"/>
@@ -382,12 +434,15 @@ E-COMMERCE HQ
 <line x1="50" y1="50" x2="21" y2="80"/>
 <line x1="50" y1="50" x2="50" y2="81"/>
 <line x1="50" y1="50" x2="79" y2="80"/>
+
 </svg>
 
 <button class="hub" type="button" data-room="manager">
+
 <span class="symbol">✺</span>
 <b>GPT</b>
 <small>المدير المركزي</small>
+
 </button>
 
 <button class="room r-search" data-room="search">
@@ -441,14 +496,17 @@ E-COMMERCE HQ
 </div>
 
 <div class="foot">
+
 <span class="status">
 <i class="dot"></i>
 الواجهة المحلية جاهزة
 </span>
+
 <span>•</span>
 <span>٨ غرف مستقلة</span>
 <span>•</span>
 <span>الحفظ على هذا الجهاز</span>
+
 </div>
 
 </section>
@@ -467,16 +525,19 @@ E-COMMERCE HQ
 </div>
 
 <div class="messages" id="messages">
+
 <div class="empty">
 هذه مساحة المحادثة الخاصة بهذه الغرفة.
 <br>
 ستبقى رسائلك محفوظة على هذا الجهاز.
 </div>
+
 </div>
 
 <div class="composer">
 
-<textarea id="input"
+<textarea
+id="input"
 placeholder="اكتب ملاحظتك أو المهمة..."
 rows="1"></textarea>
 
@@ -501,6 +562,8 @@ rows="1"></textarea>
 <div class="toast" id="toast"></div>
 
 <script>
+
+/* تعريف الغرف */
 
 const rooms={
 
@@ -528,9 +591,15 @@ let current=null;
 
 const $=id=>document.getElementById(id);
 
+
+/* مفاتيح التخزين */
+
 function key(){
 return 'ehq-chat-'+current;
 }
+
+
+/* إشعارات التطبيق */
 
 function showToast(t){
 
@@ -539,17 +608,31 @@ $('toast').style.display='block';
 
 setTimeout(()=>{
 $('toast').style.display='none';
-},2500);
+},3000);
 
 }
 
+
+/* قراءة الرسائل بأمان */
+
 function getMessages(room){
+
+try{
 
 return JSON.parse(
 localStorage.getItem('ehq-chat-'+room)||'[]'
 );
 
+}catch(e){
+
+return [];
+
 }
+
+}
+
+
+/* حفظ الرسائل */
 
 function saveMessages(room,data){
 
@@ -559,6 +642,9 @@ JSON.stringify(data)
 );
 
 }
+
+
+/* إضافة رسالة */
 
 function addMessage(room,role,text){
 
@@ -573,6 +659,9 @@ at:Date.now()
 saveMessages(room,data);
 
 }
+
+
+/* عرض الرسائل */
 
 function render(){
 
@@ -604,44 +693,171 @@ $('messages').scrollTop=$('messages').scrollHeight;
 
 }
 
-/* تحديد الغرفة المناسبة للمهمة */
-function routeTask(text){
-  const t = text.toLowerCase();
 
-  // الفيديو
-  if(/فيديو|سيناريو|مونتاج|محتوى إبداعي/.test(t))
-    return 'video';
+/* توحيد الحروف العربية */
 
-  // الميزانية
-  if(/ميزانية|تكلفة|ربح|أرباح|مصروفات/.test(t))
-    return 'budget';
+function normalizeText(text){
 
-  // المتجر
-  if(/متجر|shopify|صفحة|صفحات|إعدادات المتجر/.test(t))
-    return 'store';
+return text
+.toLowerCase()
+.replace(/[أإآ]/g,'ا')
+.replace(/ة/g,'ه')
+.replace(/ى/g,'ي')
+.replace(/ـ/g,'')
+.replace(/[\u064B-\u065F]/g,'');
 
-  // الموردون والشحن
-  if(/مورد|cj|شحن|سعر|أسعار|توفر|مخزون/.test(t))
-    return 'suppliers';
-
-  // خدمة العملاء
-  if(/عميل|رد|استرجاع|دعم|زبون/.test(t))
-    return 'support';
-
-  // التحليل
-  if(/تحليل|بيانات|أرقام|أداء|مبيعات/.test(t))
-    return 'analysis';
-
-  // البحث
-  if(/منتج|منتجات|سوق|منافس|بحث/.test(t))
-    return 'search';
-
-  // التسويق
-  if(/إعلان|تسويق|جمهور|حملة|تسويقية/.test(t))
-    return 'marketing';
-
-  return 'manager';
 }
+
+
+/* اكتشاف الغرف المناسبة */
+
+function detectRooms(text){
+
+const t=normalizeText(text);
+
+const targets=[];
+
+const rules=[
+
+['video',/فيديو|سيناريو|مونتاج|محتوي ابداعي|مقطع|تصوير/],
+
+['budget',/ميزانيه|تكلفه|تكاليف|ربح|ارباح|مصروفات|ميزانيه اعلانيه/],
+
+['store',/متجر|shopify|صفحه|صفحات|اعدادات المتجر|المنتجات في المتجر/],
+
+['suppliers',/مورد|cj|شحن|سعر|اسعار|توفر|مخزون|توصيل/],
+
+['support',/عميل|رد|استرجاع|دعم|زبون|شكوي|استرداد/],
+
+['analysis',/تحليل|بيانات|ارقام|اداء|مبيعات|مؤشرات/],
+
+['search',/منتج|منتجات|سوق|منافس|بحث|فرصه|فرص/],
+
+['marketing',/اعلان|اعلاني|تسويق|جمهور|حمله|استهداف|ترويجي/]
+
+];
+
+for(const [room,pattern] of rules){
+
+if(pattern.test(t)){
+targets.push(room);
+}
+
+}
+
+return targets;
+
+}
+
+
+/* تقسيم الطلب إلى مهام */
+
+function splitTasks(text){
+
+return text
+.split(/[\n.!؟؛]+|\s+ثم\s+/)
+.map(part=>part.trim())
+.filter(part=>part.length>2);
+
+}
+
+
+/* المدير المركزي */
+
+function processManagerTask(text){
+
+const parts=splitTasks(text);
+
+const tasks={};
+
+/* تحليل كل جزء */
+
+for(const part of parts){
+
+const targets=detectRooms(part);
+
+for(const target of targets){
+
+if(!tasks[target]){
+tasks[target]=[];
+}
+
+if(!tasks[target].includes(part)){
+tasks[target].push(part);
+}
+
+}
+
+}
+
+/* التحقق من وجود مهام */
+
+const targets=Object.keys(tasks);
+
+if(!targets.length){
+
+addMessage(
+'manager',
+'assistant',
+'لم أتمكن من تحديد الغرفة المناسبة.\n\nحاول كتابة المهمة بشكل أوضح، مثل:\n• البحث عن منتج.\n• إعداد حملة تسويقية.\n• تحليل المبيعات.\n• إنشاء فيديو.\n• التحقق من مورد CJ.\n• حساب الميزانية.\n• مراجعة Shopify.\n• الرد على عميل.'
+);
+
+render();
+
+return;
+
+}
+
+/* توزيع المهام */
+
+for(const target of targets){
+
+const taskText=tasks[target].join('\n');
+
+addMessage(
+target,
+'user',
+'مهمة محالة من المدير المركزي:\n'+taskText
+);
+
+}
+
+/* إنشاء تقرير التوجيه */
+
+let report='تم تحليل طلبك وتوزيع المهام:\n\n';
+
+for(const target of targets){
+
+report+='• '+rooms[target][0]+'\n';
+
+for(const task of tasks[target]){
+report+='  - '+task+'\n';
+}
+
+report+='\n';
+
+}
+
+report+='عدد الغرف المستهدفة: '+targets.length;
+
+addMessage(
+'manager',
+'assistant',
+report
+);
+
+render();
+
+showToast('تم توزيع المهام على '+targets.length+' غرفة');
+
+/* فتح أول غرفة مستهدفة */
+
+openRoom(targets[0]);
+
+}
+
+
+/* فتح الغرف */
 
 function openRoom(id){
 
@@ -661,6 +877,9 @@ render();
 
 }
 
+
+/* العودة للرئيسية */
+
 function home(){
 
 current=null;
@@ -671,17 +890,24 @@ $('home').classList.remove('hidden');
 
 }
 
+
+/* ربط أزرار الغرف */
+
 document.querySelectorAll('[data-room]').forEach(b=>{
 
 b.addEventListener('click',()=>{
+
 openRoom(b.dataset.room);
+
 });
 
 });
+
 
 $('back').onclick=home;
 
-/* إرسال الرسائل وتوجيه مهام المدير المركزي */
+
+/* إرسال الرسائل */
 
 $('send').onclick=()=>{
 
@@ -691,63 +917,32 @@ if(!text)return;
 
 if(!current)return;
 
-/* حفظ الرسالة في الغرفة الحالية */
+/* حفظ رسالة المستخدم */
 
 addMessage(current,'user',text);
 
 $('input').value='';
 
-/* إذا كانت الرسالة من المدير المركزي */
+/* المدير المركزي */
 
 if(current==='manager'){
 
-const target=routeTask(text);
-
-/* إذا لم يتم التعرف على الغرفة المناسبة */
-
-if(target==='manager'){
-
-addMessage(
-'manager',
-'assistant',
-'لم أتمكن من تحديد الغرفة المناسبة لهذه المهمة. حاول كتابة كلمات أوضح مثل: منتج، تسويق، تحليل، فيديو، مورد، ميزانية، متجر أو عميل.'
-);
-
-render();
+processManagerTask(text);
 
 return;
 
 }
 
-/* إرسال نسخة من المهمة إلى الغرفة المناسبة */
-
-addMessage(target,'user',text);
-
-/* تسجيل عملية التوجيه في سجل المدير */
-
-addMessage(
-'manager',
-'assistant',
-'تم توجيه المهمة إلى '+rooms[target][0]+'. يمكنك متابعة المهمة داخل الغرفة المختصة.'
-);
-
-/* فتح الغرفة المستهدفة */
-
-showToast('تم توجيه المهمة إلى '+rooms[target][0]);
-
-openRoom(target);
-
-return;
-
-}
-
-/* في الغرف الأخرى يتم حفظ الرسالة فقط */
+/* الغرف الأخرى */
 
 render();
 
 showToast('تم حفظ الرسالة في سجل هذه الغرفة');
 
 };
+
+
+/* الإرسال بزر Enter */
 
 $('input').addEventListener('keydown',e=>{
 
@@ -760,6 +955,9 @@ $('send').click();
 }
 
 });
+
+
+/* مسح سجل الغرفة */
 
 $('clear').onclick=()=>{
 
@@ -776,6 +974,7 @@ showToast('تم مسح سجل الغرفة');
 }
 
 };
+
 
 /* تسجيل التطبيق كـ PWA */
 
