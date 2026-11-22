@@ -1,0 +1,20 @@
+{
+  "name": "E-commerce HQ",
+  "short_name": "Ecom HQ",
+  "description": "مساحة عمل لإدارة التجارة الإلكترونية",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#100d1c",
+  "theme_color": "#100d1c",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
