@@ -1,4 +1,5 @@
 import Fastify from "fastify";
+import { processRequest } from "./brain/central-brain";
 
 const app = Fastify({
   logger: true
@@ -19,6 +20,25 @@ app.get("/health", async () => {
     service: "ecommerce-hq-backend",
     timestamp: new Date().toISOString()
   };
+});
+
+// Central Brain API
+app.post<{
+  Body: {
+    message: string;
+    projectId?: string;
+  };
+}>("/api/chat", async (request, reply) => {
+
+  const result = processRequest(request.body || {
+    message: ""
+  });
+
+  if (result.status === "rejected") {
+    return reply.code(400).send(result);
+  }
+
+  return reply.code(200).send(result);
 });
 
 const start = async () => {
