@@ -1,0 +1,45 @@
+name: Backend Check
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'backend/**'
+      - '.github/workflows/backend-check.yml'
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'backend/**'
+      - '.github/workflows/backend-check.yml'
+
+jobs:
+  build:
+    name: TypeScript Build Test
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: backend/package.json
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Check TypeScript
+        run: npm run typecheck
+
+      - name: Build Backend
+        run: npm run build
