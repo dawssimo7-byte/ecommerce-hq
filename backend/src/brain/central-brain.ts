@@ -23,7 +23,9 @@ export function processRequest(
     return {
       taskId: "",
       status: "rejected",
-      message: "الطلب فارغ. يرجى كتابة المهمة."
+      message: "الطلب فارغ. يرجى كتابة المهمة.",
+      projectId: request.projectId,
+      createdAt: new Date().toISOString()
     };
   }
 
